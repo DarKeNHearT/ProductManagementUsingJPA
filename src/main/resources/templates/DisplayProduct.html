@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DisplayProduct</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Product Id</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">product Price</th>
+        <th scope="col">Image</th>
+        <th scope="col" colspan="3">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${products}">
+        <td th:text="${product.product_id}"/>
+        <td th:text="${product.product_name}"/>
+        <td th:text="${product.product_price}"/>
+        <td><img th:src = "'/uploads/'+${product.filename}" width="50" height="50"></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Product/add/'+ ${product.product_id}}" role="button">Update</a></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Order/Product/Sales/'+ ${product.product_id}}" role="button">Total Sales</a></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Product/delete/'+ ${product.product_id}}" role="button">Delete Product</a></td>
+
+    </tr>
+    </tbody>
+</table>
+<a href="/Product">Back</a>
+</body>
+</html>

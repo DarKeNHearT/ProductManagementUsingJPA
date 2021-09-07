@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TotalSales Of A Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<form th:action="@{'/Order/product/date'}" th:object="${dates}">
+    <label>From Date:</label>
+    <input type="date" name="fromDate" th:field="*{fromDate}"><br>
+    <label>To Date:</label>
+    <input type="date" name="toDate" th:field="*{toDate}">
+    <button type="submit" class="btn btn-info">Choose</button>
+</form>
+
+
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Total Sales</th>
+        <th scope="col">Total Purchase</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "output: ${outputs}">
+        <td th:text="${output.quantity}"/>
+        <td th:text="${output.total_price}"/>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" th:href="@{/Order/}" role="button">Back</a>
+</body>
+</html>

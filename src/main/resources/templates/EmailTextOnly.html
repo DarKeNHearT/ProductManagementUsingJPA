@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Email Text Only</title>
+</head>
+<body>
+<form th:action="@{'/send/mail/toUsers/textmail'}" th:object = "${mails}" method="POST">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="text" th:field="*{sendto}" class="form-control" id="exampleFormControlInput1" value = "*{email}" placeholder="name1@example.com ,name2@example.com ,name3@example.com"/>
+    </div>
+    <input th:field="*{subject}" class="form-control form-control-sm" type="text" placeholder="Subject"/>
+    <br>
+    <br>
+    <div class="form-group">
+        <textarea th:field="*{body}" class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Body Of Mail" rows="3"/>
+    </div>
+    <button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+<a href="/Email">Back</a>
+</body>
+</html>

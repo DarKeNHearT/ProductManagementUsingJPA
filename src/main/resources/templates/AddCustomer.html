@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AddCustomer</title>
+</head>
+<body>
+
+<form action="#" th:action="@{'/api/form/customer/'}" th:object="${customers}" method="POST">
+  <input type="text" th:field = "*{customer_id}" value="*{customer_id}" hidden/>
+  <input type="text" th:field = "*{customer_name}"  value="*{customer_name}" placeholder="Customer Full Name" class="form-control col-2"/>
+  <span th:if="${#fields.hasErrors('customer_name')}" th:errors = "*{customer_name}">Customer Name Error</span>
+  <input type="email" th:field = "*{email}"  value="*{email}" placeholder="Customer email" class="form-control col-2"/>
+  <button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+
+</body>
+<script>
+  function checkUnique(form){
+  userName = $("#customer_name").val();
+  userEmail = ${"#email"}.val();
+  url = "[[@{'/api/form/checkCustomer'}]]"
+  csrfValue = $("input[name=_csrf]").val();
+
+  params = {customer_name:userName,email=userEmail, _csrf: csrfValue};
+
+  }
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DisplayCustomer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Customer id</th>
+        <th scope="col">Customer name</th>
+        <th scope="col">Email</th>
+        <th scope="col" colspan="4">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer: ${customers}">
+        <td th:text="${customer.customer_id}"/>
+        <td th:text = "${customer.customer_name}"/>
+        <td th:text="${customer.email}"/>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Customer/add/'+ ${customer.customer_id}}" role="button">Update Customer</a></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Customer/delete/'+ ${customer.customer_id}}" role="button">Delete Customer</a></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Order/Customer/Sales/'+ ${customer.customer_id}}" role="button">Total Purchase</a></td>
+        <td colspan="1"><a class="btn btn-primary" th:href="@{'/Order/Customer/Email/'+ ${customer.customer_id}}" role="button">Send Email</a></td>
+    </tr>
+
+    </tbody>
+</table>
+<a href="/Customer">Back</a>
+</body>
+</html>
