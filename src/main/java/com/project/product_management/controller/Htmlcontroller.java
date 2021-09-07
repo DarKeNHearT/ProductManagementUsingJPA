@@ -53,7 +53,7 @@ public class Htmlcontroller {
 
 
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/mainpage")
     public String getMainPage() {
         return "mainpage";
     }
@@ -258,4 +258,10 @@ public class Htmlcontroller {
         model.addAttribute("mails",emailTemplate);
         return "EmailTextOnly";
     }
+/*
+    @GetMapping(value = "/TaskPerformed")
+    public String index(){
+        return "index";
+    }
+    */
 }

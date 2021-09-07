@@ -26,6 +26,11 @@
 
   params = {customer_name:userName,email=userEmail, _csrf: csrfValue};
 
-  }
+  $.post(url,params,function(response))
+    if(response =="ok"){
+    form.submit();
+    alert("Customer Has Been Added" + userName  + userEmail)
+    }
+    }
 </script>
 </html>
