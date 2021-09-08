@@ -14,8 +14,8 @@ import java.security.Principal;
 @Controller
 public class MessageController {
 
-    @MessageMapping("/message")
-    @SendTo("/topic/messages")
+    @MessageMapping("chat/message")
+    @SendTo("chat/topic/messages")
     public ResponseMessage getMessage(final Message message) throws InterruptedException {
         return new ResponseMessage(HtmlUtils.htmlEscape(message.getMessageContent()));
     }

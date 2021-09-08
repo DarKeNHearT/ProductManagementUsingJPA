@@ -51,9 +51,12 @@ public class Htmlcontroller {
     @Autowired
     private EmailService emailService;
 
+@GetMapping(value = "/chat")
+public String zxc(){
+    return "index";
+}
 
-
-    @GetMapping(value = "/mainpage")
+    @GetMapping(value = "/")
     public String getMainPage() {
         return "mainpage";
     }
@@ -258,10 +261,6 @@ public class Htmlcontroller {
         model.addAttribute("mails",emailTemplate);
         return "EmailTextOnly";
     }
-/*
-    @GetMapping(value = "/TaskPerformed")
-    public String index(){
-        return "index";
-    }
-    */
+
+
 }
