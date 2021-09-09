@@ -11,26 +11,11 @@
 <form action="#" th:action="@{'/api/form/customer/'}" th:object="${customers}" method="POST">
   <input type="text" th:field = "*{customer_id}" value="*{customer_id}" hidden/>
   <input type="text" th:field = "*{customer_name}"  value="*{customer_name}" placeholder="Customer Full Name" class="form-control col-2"/>
-  <span th:if="${#fields.hasErrors('customer_name')}" th:errors = "*{customer_name}">Customer Name Error</span>
+  <span th:if="${#fields.hasErrors('customer_name')}" th:errors = "*{customer_name}"></span>
   <input type="email" th:field = "*{email}"  value="*{email}" placeholder="Customer email" class="form-control col-2"/>
   <button type="submit" class="btn btn-info col-2">Save</button>
 </form>
 
 </body>
-<script>
-  function checkUnique(form){
-  userName = $("#customer_name").val();
-  userEmail = ${"#email"}.val();
-  url = "[[@{'/api/form/checkCustomer'}]]"
-  csrfValue = $("input[name=_csrf]").val();
 
-  params = {customer_name:userName,email=userEmail, _csrf: csrfValue};
-
-  $.post(url,params,function(response))
-    if(response =="ok"){
-    form.submit();
-    alert("Customer Has Been Added" + userName  + userEmail)
-    }
-    }
-</script>
 </html>

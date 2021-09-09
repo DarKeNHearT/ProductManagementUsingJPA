@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function connect() {
-    var socket = new SockJS('chat/our-websocket');
+    var socket = new SockJS('/our-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);

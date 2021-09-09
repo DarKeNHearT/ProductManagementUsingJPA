@@ -1,10 +1,13 @@
 package com.project.product_management.controller;
 
+import com.project.product_management.configuration.dto.MyUserDetailsService;
 import com.project.product_management.exceptionhandling.valueNotFound;
 import com.project.product_management.model.Orders;
+import com.project.product_management.model.User;
 import com.project.product_management.model.customer;
 import com.project.product_management.model.product;
 import com.project.product_management.pojo.*;
+import com.project.product_management.repository.RepositoryUser;
 import com.project.product_management.repository.repositoryCustomer;
 import com.project.product_management.repository.repositoryOrder;
 import com.project.product_management.repository.repositoryProduct;
@@ -33,6 +36,12 @@ public class ApiControl {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private RepositoryUser repositoryUser;
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
     @Transactional
     @PostMapping("customer")
@@ -218,8 +227,14 @@ public class ApiControl {
         return orderService.SelectDate(datetimeSelect);
     }
 
-
-
+    @Transactional
+    @PostMapping("Signup")
+    public void signup(@RequestBody User user) throws Exception{
+        Optional<User> username = repositoryUser.findByUserName(user.getUserName());
+        if(username.isPresent())
+            throw new Exception("Name Already Present");
+        myUserDetailsService.save(user);
+    }
 
 
 }
